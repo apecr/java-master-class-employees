@@ -3,9 +3,7 @@ package com.albertoeyo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class Main {
 
@@ -51,7 +49,13 @@ public class Main {
 
         System.out.println(concatAge.apply(upperCase.apply(employees.get(0)), employees.get(0)));
 
+        IntUnaryOperator incBy5 = i -> i + 5;
 
+        System.out.println(incBy5.applyAsInt(10));
+
+        Consumer<String> c1 = s -> s.toUpperCase();
+        Consumer<String> c2 = s -> System.out.println(s);
+        c2.andThen(c1).accept("hello, world!");
     }
 
     private static String getAName(Function<Employee, String> getName, Employee employee) {
